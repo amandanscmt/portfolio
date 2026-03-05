@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@import '@fontsource/gugi';
+@import '@fontsource-variable/museomoderno';
+
+/* ========================= */
+/* 🎨 DESIGN TOKENS */
+/* ========================= */
+
+@theme {
+  /* Cores */
+  --color-background: #0F0F14;
+  --color-surface: #17171C;
+  --color-border: #26262C;
+
+  --color-text-primary: #f3d662; 
+  --color-text-secondary: #ec4899;
+
+  --color-primary: #A78BFA;
+  --color-primary-soft: #C4B5FD;
+
+  --color-accent: #F472B6;
+  --color-accent-soft: #F9A8D4;
+
+  /* Fonts */
+  --font-sans: "Inter", sans-serif;
+  --font-display-1: "Gugi", system-ui;
+  --font-display-2: "MuseoModerno Variable", system-ui;
+}
+
+/* Gradiente metálico */
+@layer utilities {
+   .bg-aurora-1 {
+    background:
+      radial-gradient(circle at 50% 50%, #f3d662 0%, #ec4899 60%, #6366f1 100%),
+      url('/src/assets/wave-texture.png'),
+      url('/src/assets/grain-texture.png');
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Glow hero */
+  .bg-aurora-2 {
+    background:
+      radial-gradient(circle at 50% 50%, #e8f3ab 0%, #d946ef 60%, #2563eb 100%),
+      url('/src/assets/wave-texture.png'),
+      url('/src/assets/grain-texture.png');
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Shadows */
+  .shadow-glow {
+    box-shadow: 0 0 40px rgba(167,139,250,0.25);
+  }
+
+  .shadow-soft {
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+
+  /* Animações */
+  .shine-animation {
+    animation: shine 8s linear infinite;
+  }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 2s infinite;
+}
+
+/* ========================= */
+
+a {
+  cursor: pointer;
+}
