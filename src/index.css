@@ -2,10 +2,6 @@
 @import '@fontsource/gugi';
 @import '@fontsource-variable/museomoderno';
 
-/* ========================= */
-/* 🎨 DESIGN TOKENS */
-/* ========================= */
-
 @theme {
   /* Cores */
   --color-background: #0F0F14;
