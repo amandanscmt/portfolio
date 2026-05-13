@@ -2,6 +2,10 @@
 @import '@fontsource/gugi';
 @import '@fontsource-variable/museomoderno';
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   /* Cores */
   --color-background: #0F0F14;

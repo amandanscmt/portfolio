@@ -15,12 +15,15 @@ const SectionWrapper = ({ children, className, id }: SectionWrapperProps) => {
         relative
         w-full
         
-        px-6
-        md:px-12
-        lg:px-24
+        px-4
+        sm:px-6
+        lg:px-12
+        xl:px-24
         
-        py-24
-        md:py-32
+        py-12
+        sm:py-16
+        md:py-24
+        lg:py-32
         `,
         className
       )}

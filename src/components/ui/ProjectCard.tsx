@@ -6,12 +6,13 @@ export type CardSize = 'normal' | 'wide' | 'tall'
 
 export interface Project {
   title: string
-  description: string
+  description?: string
   topics?: string[]
   gif: string
   stacks: string[]
   repoUrl?: string
   siteUrl?: string
+  badge?: string
 }
 
 interface ProjectCardProps {
@@ -46,12 +47,10 @@ function CheckIcon() {
 }
 
 export default function ProjectCard({ project, size = 'normal' }: ProjectCardProps) {
-  const { title, description, topics, gif, stacks, repoUrl, siteUrl } = project
+  const { title, description, topics, gif, stacks, repoUrl, siteUrl, badge } = project
 
-  // Cards tall mostram descrição + tópicos porque têm espaço vertical
-  const showTopics = size === 'tall' && topics && topics.length > 0
-  // Cards wide mostram descrição inline
-  const showDescription = size !== 'normal'
+const showTopics = size === 'tall' && topics && topics.length > 0
+const showDescription = !!description
 
   return (
     <motion.div
@@ -59,10 +58,10 @@ export default function ProjectCard({ project, size = 'normal' }: ProjectCardPro
       whileHover={{ y: -4, scale: 1.01 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: 'spring', stiffness: 280, damping: 22 }}
-      className="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-gray-700 bg-gray-800 shadow-lg hover:border-primary hover:shadow-accent-soft/20 transition-all duration-300"
+      className="group relative flex flex-col h-full rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden border border-gray-700/50 hover:border-gray-700 bg-gray-800 shadow-md sm:shadow-lg hover:shadow-accent-soft/20 transition-all duration-300"
     >
       {/* Shine sweep */}
-      <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden rounded-2xl">
+      <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden rounded-lg sm:rounded-xl lg:rounded-2xl">
         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-linear-to-r from-transparent via-white/5 to-transparent" />
       </div>
 
@@ -76,20 +75,34 @@ export default function ProjectCard({ project, size = 'normal' }: ProjectCardPro
         {/* Gradient overlay — mais forte nos cards com texto sobre a imagem */}
         <div className="absolute inset-0 bg-linear-to-t from-gray-800 via-gray-800/20 to-transparent" />
 
+        {/* Badge/Tag no topo esquerdo */}
+        {badge && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute top-2 sm:top-3 lg:top-4 left-2 sm:left-3 lg:left-4 z-20"
+          >
+            <span className="text-[10px] sm:text-[11px] lg:text-xs font-semibold px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 rounded-full bg-linear-to-r from-primary/60 to-accent/50 text-white shadow-lg backdrop-blur-sm border border-white/20 whitespace-nowrap">
+              {badge}
+            </span>
+          </motion.div>
+        )}
+
         {/* Tall card: descrição e tópicos flutuam sobre o gif */}
         {size === 'tall' && (
-          <div className="absolute bottom-0 left-0 right-0 p-4 z-1">
-            <h3 className="font-semibold text-white text-base leading-snug mb-1.5">
+          <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 lg:p-4 z-1">
+            <h3 className="font-semibold text-white text-sm sm:text-base leading-snug mb-1">
               {title}
             </h3>
-            <p className="text-[12.5px] text-white/40 leading-relaxed mb-3">
+            <p className="text-[11px] sm:text-[12.5px] text-white/40 leading-relaxed mb-2">
               {description}
             </p>
             {showTopics && (
-              <ul className="flex flex-col gap-1 mb-3">
+              <ul className="flex flex-col gap-0.5 sm:gap-1 mb-2">
                 {topics!.map((topic) => (
-                  <li key={topic} className="flex items-start gap-1.5 text-[11.5px] text-white/60">
-                    <span className="mt-0.75 shrink-0 text-pink-400"><CheckIcon /></span>
+                  <li key={topic} className="flex items-start gap-1 text-[10px] sm:text-[11.5px] text-white/60">
+                    <span className="mt-0.5 shrink-0 text-pink-400"><CheckIcon /></span>
                     {topic}
                   </li>
                 ))}
@@ -100,37 +113,42 @@ export default function ProjectCard({ project, size = 'normal' }: ProjectCardPro
       </div>
 
       {/* Footer — todos os tamanhos */}
-      <div className="relative z-1 shrink-0 px-4 py-3 border-t border-gray-700 bg-gray-900/70 backdrop-blur-sm">
+      <div className="relative z-1 shrink-0 px-2 sm:px-4 py-2 sm:py-3 lg:py-4 border-t border-gray-700/50 bg-gray-900/70 backdrop-blur-sm">
 
         {/* Wide e normal: título no footer */}
         {size !== 'tall' && (
-          <h3 className="font-semibold text-[13px] text-white leading-snug mb-2">
+          <h3 className="font-semibold text-xs sm:text-sm lg:text-[13px] text-white leading-snug mb-1 sm:mb-2">
             {title}
           </h3>
         )}
 
         {/* Wide: descrição curta no footer */}
-        {showDescription && size === 'wide' && (
-          <p className="text-[12px] text-white/40 leading-relaxed mb-2">
+        {showDescription && size !== 'tall' && (
+          <p className="text-[11px] sm:text-[12px] text-white/40 leading-relaxed mb-2 sm:mb-3 line-clamp-3">
             {description}
           </p>
         )}
 
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
           {/* Stacks */}
           <div className="flex flex-wrap gap-1 min-w-0">
-            {stacks.map((stack) => (
+            {stacks.slice(0, size === 'wide' ? 4 : 3).map((stack) => (
               <span
                 key={stack}
-                className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border border-purple-400/30 bg-purple-400/10 text-purple-300"
+                className="text-[8px] sm:text-[10px] font-mono font-semibold px-1.5 sm:px-2 py-0.5 rounded-full border border-purple-400/30 bg-purple-400/10 text-purple-300 whitespace-nowrap"
               >
                 {stack}
               </span>
             ))}
+            {stacks.length > (size === 'wide' ? 4 : 3) && (
+              <span className="text-[8px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 text-white/40">
+                +{stacks.length - (size === 'wide' ? 4 : 3)}
+              </span>
+            )}
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             {repoUrl && (
               <a
                 href={repoUrl}

@@ -3,18 +3,18 @@ import { motion, type Variants } from 'framer-motion'
 import SectionWrapper from '../components/layout/SectionWrapper'
 
 const stacks = [
-  'React', 'TypeScript', 'Next.js', 'Tailwind',
-  'AWS Cognito', 'AWS Amplify', 'REST APIs', 'Git',
+  'React', 'TypeScript', 'Tailwind', 'HTML', 'CSS',  'SCSS',
+  'Next.js', 'AWS Cognito', 'AWS Amplify', 'Integração com APIs', 'Git', 'Metodologias Ágeis', 'Figma',
 ]
 
 const education = [
   { degree: 'Análise e Desenvolvimento de Sistemas', institution: 'Senac' },
-  { degree: 'Letras', institution: 'UFRPE' },
+  { degree: 'Licenciatura em Letras', institution: 'UFRPE' },
 ]
 
 const highlights = [
   { value: 'Mobile-first', label: 'abordagem' },
-  { value: 'MVP', label: 'corporativo' },
+  { value: 'Design System', label: 'consistência' },
   { value: 'A11y', label: 'acessibilidade' },
 ]
 
@@ -29,7 +29,7 @@ const fadeUp: Variants = {
 
 const About = () => {
   return (
-    <SectionWrapper className="bg-background">
+    <SectionWrapper className="bg-background" id='about'>
 
       {/* Heading — igual ao seu atual */}
       <div className="flex flex-col md:flex-row md:items-center gap-4 mb-12">
@@ -58,7 +58,7 @@ const About = () => {
               Desenvolvedora front-end focada em criar interfaces modernas, responsivas e acessíveis.
               Trabalho principalmente com{' '}
               <span className="text-text-primary font-medium">React, TypeScript e Next.js</span>,
-              aplicando princípios mobile-first e boas práticas de performance e usabilidade.
+              aplicando princípios <b>mobile-first</b> e boas práticas de performance e usabilidade.
             </p>
             <p className="font-sans text-sm text-white/60 leading-relaxed">
               Tenho experiência no desenvolvimento de aplicações front-end completas, integração com APIs REST,
@@ -109,7 +109,7 @@ const About = () => {
             className="rounded-2xl border border-border bg-surface p-6"
           >
             <p className="font-mono text-[10px] text-white/30 uppercase tracking-widest mb-4">
-              stack
+              habilidades técnicas
             </p>
             <div className="flex flex-wrap gap-2">
               {stacks.map((stack) => (
