@@ -20,6 +20,7 @@ const Navbar = () => {
   const navItems = [
     { label: 'Início', href: '#' },
     { label: 'Sobre', href: '#about' },
+    { label: 'Experiência', href: '#experience' },
     { label: 'Projetos', href: '#projects' },
     { label: 'Contato', href: '#contact' },
   ];

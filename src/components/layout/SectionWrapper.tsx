@@ -18,12 +18,12 @@ const SectionWrapper = ({ children, className, id }: SectionWrapperProps) => {
         px-4
         sm:px-6
         lg:px-12
-        xl:px-24
+        xl:px-10
         
         py-12
         sm:py-16
         md:py-24
-        lg:py-32
+        lg:py-28
         `,
         className
       )}

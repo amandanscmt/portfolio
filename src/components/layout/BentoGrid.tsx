@@ -45,9 +45,7 @@ const projects: Project[] = [
     description:
       "Site desenvolvido para a igreja Dókimos, com informações sobre horários, localização, projetos e formas de contato.",
     gif: `${import.meta.env.BASE_URL}gifs/project4.gif`,
-    stacks: ["React", "Tailwind CSS", "Mobile-first", "HTML"],
-    repoUrl: "https://github.com/voce/projeto4",
-    siteUrl: "https://projeto4.com",
+    stacks: ["React", "Tailwind CSS", "Mobile-first", "Framer Motion", "HTML"],
     badge: "Freelance",
   },
   {
@@ -56,7 +54,6 @@ const projects: Project[] = [
       "Site desenvolvido para a o grupo voluntário Filhos de Deus, com informações sobre a organização, projetos e formas de contato.",
     gif: `${import.meta.env.BASE_URL}gifs/project5.gif`,
     stacks: ["React", "Tailwind CSS", "HTML", "CSS"],
-    siteUrl: "https://projeto5.com",
     badge: "Freelance",
   },
 ];
@@ -70,15 +67,6 @@ const containerVariants: Variants = {
     },
   },
 };
-
-// Desktop (lg) — grid de 6 colunas:
-//
-//  [ Audio — 4col                    ] [ Pacientes tall — 2col ]
-//  [ Plant Shop — 3col ] [ Reg — 3col ] [         tall        ]
-//  [ Igreja — 4col                   ] [ Filhos — 2col        ]
-//
-// Tablet (sm) — grid de 2 colunas
-// Mobile — 1 coluna
 
 export default function BentoGrid() {
   const [p1, p2, p3, p4, p5, p6] = projects;

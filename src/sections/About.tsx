@@ -1,6 +1,7 @@
 // About.tsx
 import { motion, type Variants } from 'framer-motion'
 import SectionWrapper from '../components/layout/SectionWrapper'
+import profilePic2 from '../assets/fotodeperfil.jpg';
 
 const stacks = [
   'React', 'TypeScript', 'Tailwind', 'HTML', 'CSS',  'SCSS',
@@ -29,7 +30,7 @@ const fadeUp: Variants = {
 
 const About = () => {
   return (
-    <SectionWrapper className="bg-background" id='about'>
+    <SectionWrapper className="bg-surface" id='about'>
 
       {/* Heading — igual ao seu atual */}
       <div className="flex flex-col md:flex-row md:items-center gap-4 mb-12">
@@ -40,7 +41,7 @@ const About = () => {
       </div>
 
       {/* Grid principal */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-5 max-w-6xl mx-auto">
 
         {/* Coluna esquerda */}
         <div className="flex flex-col gap-5">
@@ -127,6 +128,21 @@ const About = () => {
         {/* Coluna direita */}
         <div className="flex flex-col gap-5">
 
+          {/* Profile Picture */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            custom={0}
+            variants={fadeUp}
+            className="rounded-2xl border border-border overflow-hidden"
+          >
+            <img
+              src={profilePic2}
+              alt="Foto de perfil"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
 
           {/* Formação */}
           <motion.div

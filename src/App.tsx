@@ -3,6 +3,7 @@ import Hero from "./sections/Hero";
 import "./index.css";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
+import Experience from "./sections/Experience";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <MainLayout>
         <Hero />
         <About />
+        <Experience />
         <Projects />
       </MainLayout>
     </>
